@@ -1,0 +1,5 @@
+<MetadataProviders>
+
+	<MetadataProvider xmlns="urn:mace:shibboleth:3.0:native:sp:config" type="XML" path="/opt/shibboleth-sp/etc/shibboleth/idp-metadata.xml"/>
+
+</MetadataProviders>

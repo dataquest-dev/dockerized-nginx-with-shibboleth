@@ -31,7 +31,7 @@ server {
     
     error_log  syslog:server=syslog:5140 notice;
     access_log syslog:server=syslog:5140 timed_combined;
-    listen 443 ssl;
+    listen 8443 ssl;
     server_name ${NGINX_SERVER_NAMES};
     #limit_conn conn_per_ip 50;
     #limit_req zone=req_per_ip burst=100 nodelay;
