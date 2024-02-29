@@ -3,6 +3,8 @@
         authType="shibboleth"
         requireSession="true"
         exportAssertion="true"
-        redirectToSSL="443">
+        port="8443"
+        schema="https"
+        redirectToSSL="8443">
     </Host>
 </RequestMap>
