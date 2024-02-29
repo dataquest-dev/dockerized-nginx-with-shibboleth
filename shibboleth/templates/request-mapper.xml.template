@@ -4,7 +4,7 @@
         requireSession="true"
         exportAssertion="true"
         port="8443"
-        schema="https"
+        scheme="https"
         redirectToSSL="8443">
     </Host>
 </RequestMap>
