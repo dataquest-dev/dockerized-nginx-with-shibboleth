@@ -84,6 +84,13 @@ server {
     }
 
     location / {
+        if ($query_string ~* "format=cmdi"){
+            rewrite ^/(.*)handle/(.*)$ https://$http_host/server/cmdi/oai-metadata?metadataPrefix=cmdi&handle=$2? redirect;
+        }
+        if ($http_accept ~ "(.*cmdi.xml*)"){
+            rewrite ^/(.*)handle/(.*)$ https://$http_host/server/cmdi/oai-metadata?metadataPrefix=cmdi&handle=$2? redirect;
+        }
+
         try_files $uri @FE;
     }
 
