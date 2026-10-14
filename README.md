@@ -65,6 +65,8 @@ The shibboleth image (its entrypoint) has some similar mechanisms to what nginx 
 Shibboleth (shibd, authorizer and responder) are run via supervisord. Supervisors logs go to stdout/stderr. Shibd logs end up in logs volume.
 
 You must set `SHIB_HOSTNAME` (in an .env file or some other way). By default this is used in the entityId and in the RequestMapper.
+Keep the existing signing/encryption key pairs in `shibboleth/sp-keys`. Startup reuses complete
+pairs and fails on an incomplete pair; it generates keys only when both files of a pair are absent.
 
 Example of the overrides dir:
 ```
