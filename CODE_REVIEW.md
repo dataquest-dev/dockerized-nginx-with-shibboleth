@@ -44,7 +44,6 @@ There is no image publishing or deployment.
 | P2 | nginx upgrades invalidated the standalone SP compilation cache. | Compile nginx and SP in independent stages and combine their outputs only in the final image. |
 | P2 | Replacing the official nginx binary reduces the module set. | Document enabled modules and omitted optional modules/compiler hardening in both READMEs; extension configurations must use the compiled set. |
 | P2 | Consumer suppresses key-generation errors and can start with incomplete persisted SP key pairs. | Reuse complete pairs, generate wholly absent pairs, reject incomplete pairs and validate SP configuration before starting supervisor. |
-| P2 | Default SP debug tracing logs complete SAML identity messages. | Default message/security logging to INFO. |
 | P2 | Runtime image library compatibility is required for a reusable dynamically linked binary. | Compile on Ubuntu 22.04, document compatible Linux libraries and verify the resulting binary in the consumer's official nginx runtime. |
 | P2 | Consumer compiled its own SP and dependencies on every build, separately from the reviewed shared SP build. | Release the shared FastCGI SP build; the consumer installs that pinned asset on Ubuntu 22.04 with Ubuntu's runtime libraries. |
 | P2 | Released SP uses `/etc` and `/var`, while overrides, configurations and the logs volume use `/opt/shibboleth-sp`. | Keep SP directories under `/opt/shibboleth-sp` and link the release paths there; GNU `cp`/`tar` cannot overlay through the reverse symlinks. |
