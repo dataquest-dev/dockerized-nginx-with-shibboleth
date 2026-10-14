@@ -156,3 +156,25 @@ configures 2 metadata sources
 # Case study - local testing
 
 see https://github.com/ufal/dockerized-nginx-with-shibboleth/wiki/casestudy
+
+## Integration verification
+
+```sh
+export GH_TOKEN="$(gh auth token)"
+docker compose build nginx shibboleth
+docker tag local/dspace-nginx-shib:1.30.5 local/nginx-shib-review:latest
+docker tag local/dspace-shibboleth:3.6.0 local/shibboleth-review:latest
+docker pull python:3.11-slim
+docker compose pull syslog
+python -m pip install -r tests/requirements.txt
+python tests/integration.py
+python tests/integration.py --image-only
+```
+
+The test starts an isolated Compose project with temporary TLS/SP/IdP keys and random loopback
+ports, and removes its containers and volumes afterwards. It uses this project's actual nginx
+templates, Shibboleth FastCGI service and Fluent Bit collector, an HTTP fixture for the DSpace
+backend/frontend, and a locally signed SAML assertion. It checks metadata, discovery JSONP,
+redirects, attribute forwarding, logging, header spoofing, replay rejection and SP key preservation.
+The second run verifies the baked image without nginx configuration bind mounts. It does not test a production federation
+or DSpace's own authentication code. Review details and validation results are in `CODE_REVIEW.md`.
