@@ -4,8 +4,10 @@
 - nginx with shibboleth module
 - default config connects the two
 
-The nginx build downloads a release of the private `dataquest-dev/docker-nginx-shib-auth`
-repository. Pass a GitHub token with read access to it as a build secret:
+The nginx build and the shibboleth build (Shibboleth SP 3.6.0 built with FastCGI, asset
+pinned in `shibboleth/Dockerfile`) download releases of the private
+`dataquest-dev/docker-nginx-shib-auth` repository. Pass a GitHub token with read access
+to it as a build secret:
 
 ```
 export GH_TOKEN="$(gh auth token)"

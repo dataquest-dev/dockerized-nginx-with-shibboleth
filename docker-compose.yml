@@ -35,7 +35,11 @@ services:
     networks:
       - dspace-8_dspacenet
     restart: unless-stopped
-    build: ./shibboleth
+    build:
+      context: ./shibboleth
+      secrets:
+        - github_token
+    pull_policy: build
     volumes:
     # config (+key material), logs
     - ./shibboleth/overrides:/overrides
