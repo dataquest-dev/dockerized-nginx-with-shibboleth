@@ -5,7 +5,11 @@ services:
     networks:
       - dspace-8_dspacenet
     restart: unless-stopped
-    build: ./nginx
+    build:
+      context: ./nginx
+      secrets:
+        - github_token
+    pull_policy: build
     ports:
       - 8443:8443
     volumes:
@@ -57,4 +61,8 @@ volumes:
 networks:
   dspace-8_dspacenet:
     external: true
+
+secrets:
+  github_token:
+    environment: GH_TOKEN
 
