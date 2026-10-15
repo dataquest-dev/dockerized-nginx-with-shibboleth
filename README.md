@@ -4,16 +4,14 @@
 - nginx with shibboleth module
 - default config connects the two
 
-The nginx build downloads nginx 1.30.5 with the shibboleth, headers-more and echo
-modules compiled in, and the shibboleth build downloads Shibboleth SP 3.6.0 built with
-FastCGI (`shibd`, `shibauthorizer`, `shibresponder`), from releases of the private
-`dataquest-dev/docker-nginx-shib-auth` repository (asset IDs and SHA-256 pinned in
-`nginx/Dockerfile` and `shibboleth/Dockerfile`). Pass a GitHub token with read
-access to it as a build secret:
+The nginx build and the shibboleth build (Shibboleth SP 3.6.0 built with FastCGI, asset
+pinned in `shibboleth/Dockerfile`) download releases of the private
+`dataquest-dev/docker-nginx-shib-auth` repository. Pass a GitHub token with read access
+to it as a build secret:
 
 ```
 export GH_TOKEN="$(gh auth token)"
-docker compose up --build
+docker compose up
 ```
 
 ## additional configs for nginx
